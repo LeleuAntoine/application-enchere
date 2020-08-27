@@ -1,6 +1,6 @@
 package fr.eni.javaee.applicationenchere.controller;
 
-import fr.eni.javaee.applicationenchere.dto.CategoriesDTO;
+import fr.eni.javaee.applicationenchere.dto.CategorieDTO;
 import fr.eni.javaee.applicationenchere.model.Categories;
 import fr.eni.javaee.applicationenchere.services.categories.CategoriesServicesImpl;
 import org.modelmapper.ModelMapper;
@@ -23,22 +23,22 @@ public class CategoriesRestController {
     @Autowired
     CategoriesServicesImpl categoriesServices;
 
-    public ResponseEntity<List<CategoriesDTO>> getAllCategories() {
+    public ResponseEntity<List<CategorieDTO>> getAllCategories() {
         List<Categories> categories = categoriesServices.getAllCategories();
         if (!CollectionUtils.isEmpty(categories)) {
             categories.removeAll(Collections.singleton(null));
-            List<CategoriesDTO> categoriesDTOs = categories.stream().map(categorie -> {
+            List<CategorieDTO> categoriesDTOs = categories.stream().map(categorie -> {
                 return mapCategoriesToCategoriesDTO(categorie);
             }).collect(Collectors.toList());
-            return new ResponseEntity<List<CategoriesDTO>>(categoriesDTOs, HttpStatus.OK);
+            return new ResponseEntity<List<CategorieDTO>>(categoriesDTOs, HttpStatus.OK);
         }
-        return new ResponseEntity<List<CategoriesDTO>>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<List<CategorieDTO>>(HttpStatus.NO_CONTENT);
     }
 
-    private CategoriesDTO mapCategoriesToCategoriesDTO(Categories categories) {
+    private CategorieDTO mapCategoriesToCategoriesDTO(Categories categories) {
         ModelMapper mapper = new ModelMapper();
-        CategoriesDTO categoriesDTO = mapper.map(categories, CategoriesDTO.class);
-        return categoriesDTO;
+        CategorieDTO categorieDTO = mapper.map(categories, CategorieDTO.class);
+        return categorieDTO;
     }
 
 }

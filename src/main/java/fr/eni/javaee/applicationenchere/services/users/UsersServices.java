@@ -9,4 +9,7 @@ public interface UsersServices {
     Users updateUser(Users user);
 
     void deleteUser(Integer userId);
+
+    Users findUsersByEmail(String email);
+
 }

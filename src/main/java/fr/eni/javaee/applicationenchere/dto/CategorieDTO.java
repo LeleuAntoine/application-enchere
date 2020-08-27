@@ -1,11 +1,11 @@
 package fr.eni.javaee.applicationenchere.dto;
 
-public class CategoriesDTO implements Comparable<CategoriesDTO> {
+public class CategorieDTO implements Comparable<CategorieDTO> {
 
-    public CategoriesDTO() {
+    public CategorieDTO() {
     }
 
-    public CategoriesDTO(int categorieId, String libelle) {
+    public CategorieDTO(int categorieId, String libelle) {
         this.categorieId = categorieId;
         this.libelle = libelle;
     }
@@ -30,8 +30,9 @@ public class CategoriesDTO implements Comparable<CategoriesDTO> {
         this.libelle = libelle;
     }
 
-//    @Override
-//    public int compareTo(CategoriesDTO o) {
-//        return libelle.compareToIgnoreCase(o.libelle);
-//    }
+    @Override
+    public int compareTo(CategorieDTO o) {
+        return libelle.compareToIgnoreCase(o.libelle);
+    }
+
 }

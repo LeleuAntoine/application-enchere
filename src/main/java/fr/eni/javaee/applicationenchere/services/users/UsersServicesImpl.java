@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+
 @Service("usersService")
 @Transactional
 public class UsersServicesImpl implements UsersServices {
@@ -16,17 +17,22 @@ public class UsersServicesImpl implements UsersServices {
 
     @Override
     public Users saveUser(Users user) {
-        return usersDAO.save(user);
+        return (Users) usersDAO.save(user);
     }
 
     @Override
     public Users updateUser(Users user) {
-        return usersDAO.save(user);
+        return (Users) usersDAO.save(user);
     }
 
     @Override
     public void deleteUser(Integer userId) {
         usersDAO.deleteById(userId);
+    }
+
+    @Override
+    public Users findUsersByEmail(String email){
+        return usersDAO.findUsersByEmailIgnoreCase(email);
     }
 
 }

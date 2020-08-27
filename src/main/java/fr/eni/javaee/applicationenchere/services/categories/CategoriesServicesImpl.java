@@ -13,26 +13,26 @@ import java.util.List;
 public class CategoriesServicesImpl implements CategoriesServices {
 
     @Autowired
-    private CategoriesDAO categoriesDAO;
+    private CategoriesDAO categorieDAO;
 
     @Override
     public Categories saveCategorie(Categories categorie) {
-        return categoriesDAO.save(categorie);
+        return (Categories) categorieDAO.save(categorie);
     }
 
     @Override
     public Categories updateCategorie(Categories categorie) {
-        return categoriesDAO.save(categorie);
+        return (Categories) categorieDAO.save(categorie);
     }
 
     @Override
     public void deleteCategorie(Integer categorieId) {
-        categoriesDAO.deleteById(categorieId);
+        categorieDAO.deleteById(categorieId);
     }
 
     @Override
     public List<Categories> getAllCategories(){
-        return categoriesDAO.findAll();
+        return categorieDAO.findAll();
     }
 
 }
