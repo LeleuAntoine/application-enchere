@@ -1,4 +1,4 @@
-package fr.eni.javaee.applicationenchere.bo;
+package fr.eni.javaee.applicationenchere.model;
 
 import java.io.Serializable;
 
@@ -7,6 +7,7 @@ import java.io.Serializable;
  @author Adalrik
  @date 26/08/2020
  */
+
 
 public class Users implements Serializable {
 

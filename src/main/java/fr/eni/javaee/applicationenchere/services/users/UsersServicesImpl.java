@@ -1,7 +1,7 @@
 package fr.eni.javaee.applicationenchere.services.users;
 
-import fr.eni.javaee.applicationenchere.bo.Users;
-import fr.eni.javaee.applicationenchere.dal.UsersDAO;
+import fr.eni.javaee.applicationenchere.model.Users;
+import fr.eni.javaee.applicationenchere.dao.UsersDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

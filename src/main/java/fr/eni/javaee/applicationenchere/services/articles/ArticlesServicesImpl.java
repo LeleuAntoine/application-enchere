@@ -1,7 +1,7 @@
 package fr.eni.javaee.applicationenchere.services.articles;
 
-import fr.eni.javaee.applicationenchere.bo.Articles;
-import fr.eni.javaee.applicationenchere.dal.ArticlesDAO;
+import fr.eni.javaee.applicationenchere.model.Articles;
+import fr.eni.javaee.applicationenchere.dao.ArticlesDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

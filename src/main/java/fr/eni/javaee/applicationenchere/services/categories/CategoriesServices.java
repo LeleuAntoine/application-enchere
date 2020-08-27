@@ -1,6 +1,8 @@
 package fr.eni.javaee.applicationenchere.services.categories;
 
-import fr.eni.javaee.applicationenchere.bo.Categories;
+import fr.eni.javaee.applicationenchere.model.Categories;
+
+import java.util.List;
 
 public interface CategoriesServices {
 
@@ -9,5 +11,7 @@ public interface CategoriesServices {
     Categories updateCategorie(Categories categorie);
 
     void deleteCategorie(Integer categorieId);
+
+    List<Categories> getAllCategories();
 
 }

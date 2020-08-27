@@ -1,14 +1,12 @@
 package fr.eni.javaee.applicationenchere.controller;
 
-import fr.eni.javaee.applicationenchere.bo.Users;
-import fr.eni.javaee.applicationenchere.controller.DTO.UserDTO;
+import fr.eni.javaee.applicationenchere.model.Users;
 import fr.eni.javaee.applicationenchere.services.users.UsersServicesImpl;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,7 +39,7 @@ public class UserRestController {
             return new ResponseEntity<UserDTO>(HttpStatus.CONFLICT);
         }
         Users userRequest = mapUserDTOToUser(UserDTORequest);
-        userRequest.setCreationDate(LocalDate.now());
+        userRequest.setCr(LocalDate.now());
         Users customerResponse = usersServices.saveUser(userRequest);
         if (customerResponse != null) {
             UserDTO userDTO = mapUserToUserDTO(customerResponse);

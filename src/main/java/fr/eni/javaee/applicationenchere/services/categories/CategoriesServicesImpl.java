@@ -1,11 +1,12 @@
 package fr.eni.javaee.applicationenchere.services.categories;
 
-import fr.eni.javaee.applicationenchere.bo.Categories;
-import fr.eni.javaee.applicationenchere.dal.CategoriesDAO;
+import fr.eni.javaee.applicationenchere.model.Categories;
+import fr.eni.javaee.applicationenchere.dao.CategoriesDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service("categoriesService")
 @Transactional
@@ -27,6 +28,11 @@ public class CategoriesServicesImpl implements CategoriesServices {
     @Override
     public void deleteCategorie(Integer categorieId) {
         categoriesDAO.deleteById(categorieId);
+    }
+
+    @Override
+    public List<Categories> getAllCategories(){
+        return categoriesDAO.findAll();
     }
 
 }

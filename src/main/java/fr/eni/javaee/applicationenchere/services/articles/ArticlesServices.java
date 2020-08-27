@@ -1,10 +1,11 @@
 package fr.eni.javaee.applicationenchere.services.articles;
 
-import fr.eni.javaee.applicationenchere.bo.Articles;
+import fr.eni.javaee.applicationenchere.model.Articles;
 
 public interface ArticlesServices {
 
-    Object saveArticle(Articles article);
+
+    Articles saveArticle(Articles article);
 
     Articles updateArticle(Articles article);
 

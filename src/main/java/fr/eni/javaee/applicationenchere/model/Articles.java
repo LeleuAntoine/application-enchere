@@ -1,4 +1,4 @@
-package fr.eni.javaee.applicationenchere.bo;
+package fr.eni.javaee.applicationenchere.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
