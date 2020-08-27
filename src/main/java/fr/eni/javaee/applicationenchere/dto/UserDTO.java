@@ -1,11 +1,17 @@
 package fr.eni.javaee.applicationenchere.dto;
 
+import com.sun.istack.NotNull;
+
+import javax.persistence.Column;
+
 public class UserDTO implements Comparable<UserDTO>{
 
+    @NotNull
     private int userId;
     private String pseudo;
     private String nom;
     private String prenom;
+    @NotNull
     private String email;
     private String telephone;
     private String rue;

@@ -1,33 +1,47 @@
 package fr.eni.javaee.applicationenchere.model;
 
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- Classe pour gérer getter et setter de l'objet Users
- @author Adalrik
- @date 26/08/2020
+ * Classe pour gérer getter et setter de l'objet Users
+ *
+ * @author Adalrik
+ * @date 26/08/2020
  */
 
+@Entity
+@Table(name = "UTILISATEURS")
+public class SecurityUsers implements Serializable {
 
-public class Users implements Serializable {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "no_utilisateur")
     private int userId;
     private String pseudo;
     private String nom;
     private String prenom;
+
+    @NotNull
+    @Column(unique = true)
     private String email;
+
     private String telephone;
     private String rue;
+    @Column(name = "code_postal")
     private String codePostal;
     private String ville;
+    @Column(name = "mot_de_passe")
     private String motDePasse;
     private int credit;
     private byte administrateur;
 
-    public Users() {
+    public SecurityUsers() {
     }
 
-    public Users(int userId, String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse, int credit, byte administrateur) {
+    public SecurityUsers(int userId, String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse, int credit, byte administrateur) {
         this.userId = userId;
         this.pseudo = pseudo;
         this.nom = nom;

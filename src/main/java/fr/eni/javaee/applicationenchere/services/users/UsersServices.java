@@ -1,15 +1,15 @@
 package fr.eni.javaee.applicationenchere.services.users;
 
-import fr.eni.javaee.applicationenchere.model.Users;
+import fr.eni.javaee.applicationenchere.model.SecurityUsers;
 
 public interface UsersServices {
 
-    Users saveUser(Users user);
+    SecurityUsers saveUser(SecurityUsers user);
 
-    Users updateUser(Users user);
+    SecurityUsers updateUser(SecurityUsers user);
 
     void deleteUser(Integer userId);
 
-    Users findUsersByEmail(String email);
+    SecurityUsers findByEmail(String email);
 
 }

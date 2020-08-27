@@ -1,6 +1,6 @@
 package fr.eni.javaee.applicationenchere.services.users;
 
-import fr.eni.javaee.applicationenchere.model.Users;
+import fr.eni.javaee.applicationenchere.model.SecurityUsers;
 import fr.eni.javaee.applicationenchere.dao.UsersDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,13 +16,13 @@ public class UsersServicesImpl implements UsersServices {
     private UsersDAO usersDAO;
 
     @Override
-    public Users saveUser(Users user) {
-        return (Users) usersDAO.save(user);
+    public SecurityUsers saveUser(SecurityUsers user) {
+        return usersDAO.save(user);
     }
 
     @Override
-    public Users updateUser(Users user) {
-        return (Users) usersDAO.save(user);
+    public SecurityUsers updateUser(SecurityUsers user) {
+        return usersDAO.save(user);
     }
 
     @Override
@@ -31,8 +31,8 @@ public class UsersServicesImpl implements UsersServices {
     }
 
     @Override
-    public Users findUsersByEmail(String email){
-        return usersDAO.findUsersByEmailIgnoreCase(email);
+    public SecurityUsers findByEmail(String email){
+        return usersDAO.findByEmail(email);
     }
 
 }

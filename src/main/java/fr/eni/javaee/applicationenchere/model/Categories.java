@@ -1,5 +1,7 @@
 package fr.eni.javaee.applicationenchere.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
@@ -8,9 +10,10 @@ import java.io.Serializable;
  * @author Adalrik
  * @date 26/08/2020
  */
-
+@Entity
 public class Categories implements Serializable {
 
+    @Id
     private int categorieId;
     private String libelle;
 

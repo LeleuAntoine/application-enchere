@@ -1,5 +1,6 @@
 package fr.eni.javaee.applicationenchere.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -10,14 +11,22 @@ import java.sql.Timestamp;
  * @date 26/08/2020
  */
 
+@Entity
+@Table(name = "ARTICLES")
 public class Articles implements Serializable {
+
+    @Id
+    @GeneratedValue
+    @Column(name = "no_articles")
     private int articleID;
+
     private String nomArticle;
     private String description;
     private Timestamp dateDebutEnchere;
     private Timestamp dateFinEnchere;
     private int prixInitial;
     private int prixVente;
+    private String id;
 
     public Articles() {
     }
@@ -100,4 +109,5 @@ public class Articles implements Serializable {
                 ", prixVente=" + prixVente +
                 '}';
     }
+
 }

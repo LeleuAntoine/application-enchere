@@ -17,12 +17,12 @@ public class CategoriesServicesImpl implements CategoriesServices {
 
     @Override
     public Categories saveCategorie(Categories categorie) {
-        return (Categories) categorieDAO.save(categorie);
+        return categorieDAO.save(categorie);
     }
 
     @Override
     public Categories updateCategorie(Categories categorie) {
-        return (Categories) categorieDAO.save(categorie);
+        return categorieDAO.save(categorie);
     }
 
     @Override
