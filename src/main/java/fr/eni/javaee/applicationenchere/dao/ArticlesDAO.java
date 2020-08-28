@@ -11,9 +11,9 @@ import java.util.List;
 @Repository
 public interface ArticlesDAO  extends JpaRepository <Articles, Integer>{
 
-        @Query(getAllArticles)
-        List<Articles> getAllArticles(Pageable pageable);
-
-        String getAllArticles= "pour Article ordre décroissant";
+//        @Query(getAllArticles)
+//        List<Articles> getAllArticles(Pageable pageable);
+//
+//        String getAllArticles= "pour Article ordre décroissant";
     }
 

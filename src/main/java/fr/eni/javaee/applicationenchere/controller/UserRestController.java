@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/users/api")
+@RequestMapping("/users")
 public class UserRestController {
     public static final Logger LOGGER = LoggerFactory.getLogger(UserRestController.class);
 

@@ -5,7 +5,7 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 /**
  * Classe pour gérer getter et setter de l'objet Articles
@@ -25,6 +25,7 @@ public class Articles implements Serializable {
 
     @NotNull
     @Size(max = 30, message = "Taille maximum 30 caractères")
+    @Column(name = "nom_article")
     private String nomArticle;
 
     @NotNull
@@ -32,24 +33,31 @@ public class Articles implements Serializable {
     private String description;
 
     @NotNull
-    private Timestamp dateDebutEnchere;
+    @Column(name = "date_debut_encheres")
+    private LocalDate dateDebutEnchere;
 
     @NotNull
-    private Timestamp dateFinEnchere;
+    @Column(name = "date_fin_encheres")
+    private LocalDate dateFinEnchere;
 
+    @Column(name = "prix_initial")
     private int prixInitial;
+
+    @Column(name = "prix_vente")
     private int prixVente;
 
     @NotNull
+    @Column(name = "no_utilisateur")
     private int userId;
 
     @NotNull
+    @Column(name = "no_categorie")
     private int categorieId;
 
     public Articles() {
     }
 
-    public Articles(int articleID, String nomArticle, String description, Timestamp dateDebutEnchere, Timestamp dateFinEnchere, int prixInitial, int prixVente) {
+    public Articles(int articleID, String nomArticle, String description, LocalDate dateDebutEnchere, LocalDate dateFinEnchere, int prixInitial, int prixVente) {
         this.articleID = articleID;
         this.nomArticle = nomArticle;
         this.description = description;
@@ -83,19 +91,19 @@ public class Articles implements Serializable {
         this.description = description;
     }
 
-    public Timestamp getDateDebutEnchere() {
+    public LocalDate getDateDebutEnchere() {
         return dateDebutEnchere;
     }
 
-    public void setDateDebutEnchere(Timestamp dateDebutEnchere) {
+    public void setDateDebutEnchere(LocalDate dateDebutEnchere) {
         this.dateDebutEnchere = dateDebutEnchere;
     }
 
-    public Timestamp getDateFinEnchere() {
+    public LocalDate getDateFinEnchere() {
         return dateFinEnchere;
     }
 
-    public void setDateFinEnchere(Timestamp dateFinEnchere) {
+    public void setDateFinEnchere(LocalDate dateFinEnchere) {
         this.dateFinEnchere = dateFinEnchere;
     }
 

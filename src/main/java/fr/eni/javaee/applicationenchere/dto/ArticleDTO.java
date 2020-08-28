@@ -1,6 +1,6 @@
 package fr.eni.javaee.applicationenchere.dto;
 
-import java.security.Timestamp;
+import java.time.LocalDate;
 
 /**
  * Classe UserDTO pour communiquer
@@ -13,8 +13,8 @@ public class ArticleDTO implements Comparable<ArticleDTO> {
     private int articleID;
     private String nomArticle;
     private String description;
-    private Timestamp dateDebutEnchere;
-    private Timestamp dateFinEnchere;
+    private LocalDate dateDebutEnchere;
+    private LocalDate dateFinEnchere;
     private int prixInitial;
     private int prixVente;
     private int userId;
@@ -41,19 +41,19 @@ public class ArticleDTO implements Comparable<ArticleDTO> {
         this.description = description;
     }
 
-    public Timestamp getDateDebutEnchere() {
+    public LocalDate getDateDebutEnchere() {
         return dateDebutEnchere;
     }
 
-    public void setDateDebutEnchere(Timestamp dateDebutEnchere) {
+    public void setDateDebutEnchere(LocalDate dateDebutEnchere) {
         this.dateDebutEnchere = dateDebutEnchere;
     }
 
-    public Timestamp getDateFinEnchere() {
+    public LocalDate getDateFinEnchere() {
         return dateFinEnchere;
     }
 
-    public void setDateFinEnchere(Timestamp dateFinEnchere) {
+    public void setDateFinEnchere(LocalDate dateFinEnchere) {
         this.dateFinEnchere = dateFinEnchere;
     }
 

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/encheres/api")
+@RequestMapping("/encheres")
 public class ArticlesRestController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class ArticlesRestController {
     /**
      * Pagination des Articles
      */
-    @GetMapping("/encheres/pages")
+    @GetMapping("/pages")
     public ResponseEntity<List<ArticleDTO>> searchArticles(@RequestParam("beginPage") int beginPage,
                                                            @RequestParam("endPage") int endPage) {
         Page<Articles> articles = articlesServices.getPaginatedArticlesList(beginPage, endPage);
