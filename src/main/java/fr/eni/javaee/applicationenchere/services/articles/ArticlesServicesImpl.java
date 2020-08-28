@@ -3,9 +3,11 @@ package fr.eni.javaee.applicationenchere.services.articles;
 import fr.eni.javaee.applicationenchere.model.Articles;
 import fr.eni.javaee.applicationenchere.dao.ArticlesDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.data.domain.Pageable;
 
 @Service("articlesService")
 @Transactional
@@ -29,5 +31,10 @@ public class ArticlesServicesImpl implements ArticlesServices {
         articlesDAO.deleteById(articleID);
     }
 
+    @Override
+    public Page<Articles> getPaginatedArticlesList(int begin, int end) {
+        Pageable page = PageRequest.of(begin, end);
+        return articlesDAO.findAll(page);
+    }
 
 }

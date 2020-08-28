@@ -9,10 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users/api")
@@ -47,7 +44,40 @@ public class UserRestController {
     }
 
     /**
-     * Transforme une entity Users en un POJO UserDTO
+     * Met à jour les données d'un utilisateur dans la base de données.
+     *
+     * @param userDTORequest
+     * @return
+     */
+    @PutMapping("/updateUser")
+    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTORequest) {
+        if (!usersServices.checkIfIdexists(userDTORequest.getUserId())) {
+            return new ResponseEntity<UserDTO>(HttpStatus.NOT_FOUND);
+        }
+        SecurityUsers userRequest = mapUserDTOToUser(userDTORequest);
+        SecurityUsers customerResponse = usersServices.updateUser(userRequest);
+        if (customerResponse != null) {
+            UserDTO customerDTO = mapUserToUserDTO(customerResponse);
+            return new ResponseEntity<UserDTO>(customerDTO, HttpStatus.OK);
+        }
+        return new ResponseEntity<UserDTO>(HttpStatus.NOT_MODIFIED);
+    }
+
+    /**
+     * Supprime un client dans la base de données.
+     *
+     * @param userId
+     * @return
+     */
+    @DeleteMapping("/deleteCustomer/{customerId}")
+    public ResponseEntity<String> deleteUser(@PathVariable Integer userId) {
+        usersServices.deleteUser(userId);
+        return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
+    }
+
+
+    /**
+     * Transforme une entitée Users en un UserDTO
      *
      * @param user
      * @return
@@ -59,7 +89,7 @@ public class UserRestController {
     }
 
     /**
-     * Transforme un POJO UserDTO en une entity Users
+     * Transforme un UserDTO en une entité Users
      *
      * @param userDTO
      * @return

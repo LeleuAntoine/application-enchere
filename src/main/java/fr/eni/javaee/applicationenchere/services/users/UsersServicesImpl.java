@@ -35,4 +35,10 @@ public class UsersServicesImpl implements UsersServices {
         return usersDAO.findByEmail(email);
     }
 
+    @Override
+    public boolean checkIfIdexists(Integer id) {
+        return usersDAO.existsById(id);
+    }
+
+
 }

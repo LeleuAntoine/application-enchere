@@ -1,8 +1,11 @@
 package fr.eni.javaee.applicationenchere.model;
 
 import com.sun.istack.NotNull;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -13,29 +16,61 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "UTILISATEURS")
+@Table(name = "UTILISATEURS",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "pseudo_email", columnNames = {"pseudo", "email"})
+        })
 public class SecurityUsers implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "no_utilisateur")
     private int userId;
+
+    @NotNull
+    @Size(max = 30, message = "Taille maximum 30 caractères")
     private String pseudo;
+
+    @NotNull
+    @Size(max = 30, message = "Taille maximum 30 caractères")
     private String nom;
+
+    @NotNull
+    @Size(max = 30, message = "Taille maximum 30 caractères")
     private String prenom;
 
     @NotNull
     @Column(unique = true)
+    @Email(message = "Email invalide")
+    @Size(max = 20, message = "Taille maximum 20 caractères")
     private String email;
 
+    @Size(max = 15, message = "Taille maximum 15 caractères")
     private String telephone;
+
+    @NotNull
+    @Size(max = 30, message = "Taille maximum 30 caractères")
     private String rue;
+
+    @NotNull
     @Column(name = "code_postal")
+    @Size(max = 10, message = "Taille maximum 10 caractères")
     private String codePostal;
+
+    @NotNull
+    @Size(max = 30, message = "Taille maximum 30 caractères")
     private String ville;
+
     @Column(name = "mot_de_passe")
+    @NotNull
+    @Size(max = 30, message = "Taille maximum 30 caractères")
     private String motDePasse;
+
+    @Value(value = "0")
     private int credit;
+
+    @NotNull
+    @Value(value = "0")
     private byte administrateur;
 
     public SecurityUsers() {
@@ -58,10 +93,6 @@ public class SecurityUsers implements Serializable {
 
     public int getUserId() {
         return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getPseudo() {

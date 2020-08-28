@@ -1,7 +1,9 @@
 package fr.eni.javaee.applicationenchere.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -11,10 +13,16 @@ import java.io.Serializable;
  * @date 26/08/2020
  */
 @Entity
+@Table(name = "CATEGORIES")
 public class Categories implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "no_categorie")
     private int categorieId;
+
+    @NotNull
+    @Size(max = 30, message = "Taille maximum 30 caractères")
     private String libelle;
 
     public Categories() {
@@ -27,10 +35,6 @@ public class Categories implements Serializable {
 
     public int getCategorieId() {
         return categorieId;
-    }
-
-    public void setCategorieId(int categorieId) {
-        this.categorieId = categorieId;
     }
 
     public String getLibelle() {

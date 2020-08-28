@@ -2,6 +2,9 @@ package fr.eni.javaee.applicationenchere.dto;
 
 public class CategorieDTO implements Comparable<CategorieDTO> {
 
+    private int categorieId;
+    private String libelle;
+
     public CategorieDTO() {
     }
 
@@ -10,16 +13,8 @@ public class CategorieDTO implements Comparable<CategorieDTO> {
         this.libelle = libelle;
     }
 
-    private int categorieId;
-
-    private String libelle;
-
     public int getCategorieId() {
         return categorieId;
-    }
-
-    public void setCategorieId(int categorieId) {
-        this.categorieId = categorieId;
     }
 
     public String getLibelle() {

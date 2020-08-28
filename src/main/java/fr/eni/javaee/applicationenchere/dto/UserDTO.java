@@ -1,17 +1,27 @@
 package fr.eni.javaee.applicationenchere.dto;
 
 import com.sun.istack.NotNull;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
-public class UserDTO implements Comparable<UserDTO>{
+/**
+ * Classe UserDTO pour communiquer
+ *
+ * @author Adalrik
+ * @date 27/08/2020
+ */
+public class UserDTO implements Comparable<UserDTO> {
 
-    @NotNull
     private int userId;
     private String pseudo;
     private String nom;
     private String prenom;
-    @NotNull
     private String email;
     private String telephone;
     private String rue;
@@ -23,10 +33,6 @@ public class UserDTO implements Comparable<UserDTO>{
 
     public int getUserId() {
         return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getPseudo() {
@@ -118,7 +124,7 @@ public class UserDTO implements Comparable<UserDTO>{
     }
 
     @Override
-    public int compareTo(UserDTO o){
+    public int compareTo(UserDTO o) {
         return this.email.compareToIgnoreCase(o.getEmail());
     }
 }

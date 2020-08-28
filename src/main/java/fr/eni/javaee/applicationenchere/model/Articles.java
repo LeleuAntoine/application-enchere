@@ -1,6 +1,9 @@
 package fr.eni.javaee.applicationenchere.model;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -20,13 +23,28 @@ public class Articles implements Serializable {
     @Column(name = "no_articles")
     private int articleID;
 
+    @NotNull
+    @Size(max = 30, message = "Taille maximum 30 caractères")
     private String nomArticle;
+
+    @NotNull
+    @Size(max = 300, message = "Taille maximum 300 caractères")
     private String description;
+
+    @NotNull
     private Timestamp dateDebutEnchere;
+
+    @NotNull
     private Timestamp dateFinEnchere;
+
     private int prixInitial;
     private int prixVente;
-    private String id;
+
+    @NotNull
+    private int userId;
+
+    @NotNull
+    private int categorieId;
 
     public Articles() {
     }

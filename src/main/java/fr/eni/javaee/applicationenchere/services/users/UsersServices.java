@@ -12,4 +12,6 @@ public interface UsersServices {
 
     SecurityUsers findByEmail(String email);
 
+    boolean checkIfIdexists(Integer id);
+
 }
