@@ -9,4 +9,6 @@ public interface UsersDAO extends JpaRepository<SecurityUsers, Integer> {
 
     SecurityUsers findByEmail(String email);
 
+    SecurityUsers findByPseudo(String pseudo);
+
 }

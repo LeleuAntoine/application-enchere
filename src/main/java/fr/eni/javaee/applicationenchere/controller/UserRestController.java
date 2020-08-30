@@ -30,8 +30,9 @@ public class UserRestController {
      */
     @PostMapping("/addUser")
     public ResponseEntity<UserDTO> createNewUser(@RequestBody UserDTO UserDTORequest) {
-        SecurityUsers existsUser = usersServices.findByEmail(UserDTORequest.getEmail());
-        if (existsUser != null) {
+        SecurityUsers existsUserMail = usersServices.findByEmail(UserDTORequest.getEmail());
+        SecurityUsers existsUserPseudo = usersServices.findByPseudo(UserDTORequest.getPseudo());
+        if (existsUserMail != null && existsUserPseudo != null) {
             return new ResponseEntity<UserDTO>(HttpStatus.CONFLICT);
         }
         SecurityUsers userRequest = mapUserDTOToUser(UserDTORequest);
@@ -69,7 +70,7 @@ public class UserRestController {
      * @param userId
      * @return
      */
-    @DeleteMapping("/deleteCustomer/{customerId}")
+    @DeleteMapping("/deleteUser/{userId}")
     public ResponseEntity<String> deleteUser(@PathVariable Integer userId) {
         usersServices.deleteUser(userId);
         return new ResponseEntity<String>(HttpStatus.NO_CONTENT);

@@ -36,9 +36,12 @@ public class UsersServicesImpl implements UsersServices {
     }
 
     @Override
+    public SecurityUsers findByPseudo(String pseudo){
+        return usersDAO.findByPseudo(pseudo);
+    }
+
+    @Override
     public boolean checkIfIdexists(Integer id) {
         return usersDAO.existsById(id);
     }
-
-
 }

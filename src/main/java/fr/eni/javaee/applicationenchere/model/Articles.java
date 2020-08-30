@@ -20,7 +20,7 @@ public class Articles implements Serializable {
 
     @Id
     @GeneratedValue
-    @Column(name = "no_articles")
+    @Column(name = "no_article")
     private int articleID;
 
     @NotNull
@@ -57,7 +57,7 @@ public class Articles implements Serializable {
     public Articles() {
     }
 
-    public Articles(int articleID, String nomArticle, String description, LocalDate dateDebutEnchere, LocalDate dateFinEnchere, int prixInitial, int prixVente) {
+    public Articles(int articleID, @Size(max = 30, message = "Taille maximum 30 caractères") String nomArticle, @Size(max = 300, message = "Taille maximum 300 caractères") String description, LocalDate dateDebutEnchere, LocalDate dateFinEnchere, int prixInitial, int prixVente, int userId, int categorieId) {
         this.articleID = articleID;
         this.nomArticle = nomArticle;
         this.description = description;
@@ -65,6 +65,8 @@ public class Articles implements Serializable {
         this.dateFinEnchere = dateFinEnchere;
         this.prixInitial = prixInitial;
         this.prixVente = prixVente;
+        this.userId = userId;
+        this.categorieId = categorieId;
     }
 
     public int getArticleID() {
@@ -121,6 +123,14 @@ public class Articles implements Serializable {
 
     public void setPrixVente(int prixVente) {
         this.prixVente = prixVente;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public int getCategorieId() {
+        return categorieId;
     }
 
     @Override

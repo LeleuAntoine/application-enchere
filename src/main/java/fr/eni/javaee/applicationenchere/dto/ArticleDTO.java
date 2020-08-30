@@ -73,6 +73,14 @@ public class ArticleDTO implements Comparable<ArticleDTO> {
         this.prixVente = prixVente;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public int getCategorieId() {
+        return categorieId;
+    }
+
     @Override
     public int compareTo(ArticleDTO o) {
         return this.description.compareToIgnoreCase(o.getDescription());
