@@ -1,44 +1,51 @@
 package fr.eni.javaee.applicationenchere.controller;
 
+import fr.eni.javaee.applicationenchere.dao.UsersDAO;
 import fr.eni.javaee.applicationenchere.dto.UserDTO;
 import fr.eni.javaee.applicationenchere.model.SecurityUsers;
 import fr.eni.javaee.applicationenchere.services.users.UsersServicesImpl;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserRestController {
-    public static final Logger LOGGER = LoggerFactory.getLogger(UserRestController.class);
 
     @Autowired
     private UsersServicesImpl usersServices;
+    private UsersDAO usersDAO;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-//    @Autowired
-//    private JavaMailSender javaMailSender;
+    public UserRestController(UsersDAO usersDAO,
+                          BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.usersDAO = usersDAO;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     /**
      * Ajoute un nouvel utilisateur
      *
-     * @param UserDTORequest
+     * @param userDTORequest
      * @return
      */
-    @PostMapping("/addUser")
-    public ResponseEntity<UserDTO> createNewUser(@RequestBody UserDTO UserDTORequest) {
-        SecurityUsers existsUserMail = usersServices.findByEmail(UserDTORequest.getEmail());
-        SecurityUsers existsUserPseudo = usersServices.findByPseudo(UserDTORequest.getPseudo());
+    @PostMapping(value = "/sign-up")
+    public ResponseEntity<UserDTO> createNewUser(@RequestBody UserDTO userDTORequest) {
+        SecurityUsers existsUserMail = usersServices.findByEmail(userDTORequest.getEmail());
+        SecurityUsers existsUserPseudo = usersServices.findByPseudo(userDTORequest.getPseudo());
+        userDTORequest.setMotDePasse(bCryptPasswordEncoder.encode(userDTORequest.getMotDePasse()));
         if (existsUserMail != null && existsUserPseudo != null) {
             return new ResponseEntity<UserDTO>(HttpStatus.CONFLICT);
         }
-        SecurityUsers userRequest = mapUserDTOToUser(UserDTORequest);
+        SecurityUsers userRequest = mapUserDTOToUser(userDTORequest);
         SecurityUsers userResponse = usersServices.saveUser(userRequest);
         if (userResponse != null) {
             UserDTO userDTO = mapUserToUserDTO(userResponse);
+
             return new ResponseEntity<UserDTO>(userDTO, HttpStatus.CREATED);
         }
         return new ResponseEntity<UserDTO>(HttpStatus.NOT_MODIFIED);
@@ -56,10 +63,10 @@ public class UserRestController {
             return new ResponseEntity<UserDTO>(HttpStatus.NOT_FOUND);
         }
         SecurityUsers userRequest = mapUserDTOToUser(userDTORequest);
-        SecurityUsers customerResponse = usersServices.updateUser(userRequest);
-        if (customerResponse != null) {
-            UserDTO customerDTO = mapUserToUserDTO(customerResponse);
-            return new ResponseEntity<UserDTO>(customerDTO, HttpStatus.OK);
+        SecurityUsers userResponse = usersServices.updateUser(userRequest);
+        if (userResponse != null) {
+            UserDTO userDTO = mapUserToUserDTO(userResponse);
+            return new ResponseEntity<UserDTO>(userDTO, HttpStatus.OK);
         }
         return new ResponseEntity<UserDTO>(HttpStatus.NOT_MODIFIED);
     }
@@ -75,7 +82,6 @@ public class UserRestController {
         usersServices.deleteUser(userId);
         return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
     }
-
 
     /**
      * Transforme une entitée Users en un UserDTO
@@ -100,21 +106,5 @@ public class UserRestController {
         SecurityUsers user = mapper.map(userDTO, SecurityUsers.class);
         return user;
     }
-
-//    /**
-//     * Retourne l'utilisateur ayant l'adresse email passée en paramètre.
-//     * @param email
-//     * @return
-//     */
-//    @GetMapping("/searchByEmail")
-//    public ResponseEntity<CustomerDTO> searchCustomerByEmail(@RequestParam("email") String email) {
-//        //, UriComponentsBuilder uriComponentBuilder
-//        Customer customer = customerService.findCustomerByEmail(email);
-//        if (customer != null) {
-//            CustomerDTO customerDTO = mapCustomerToCustomerDTO(customer);
-//            return new ResponseEntity<CustomerDTO>(customerDTO, HttpStatus.OK);
-//        }
-//        return new ResponseEntity<CustomerDTO>(HttpStatus.NO_CONTENT);
-//    }
-
 }
+

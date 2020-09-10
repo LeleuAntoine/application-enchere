@@ -1,5 +1,10 @@
 package fr.eni.javaee.applicationenchere.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -19,7 +24,7 @@ import java.time.LocalDate;
 public class Articles implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "no_article")
     private int articleID;
 
@@ -129,6 +134,14 @@ public class Articles implements Serializable {
         return userId;
     }
 
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setCategorieId(int categorieId) {
+        this.categorieId = categorieId;
+    }
+
     public int getCategorieId() {
         return categorieId;
     }
@@ -143,7 +156,8 @@ public class Articles implements Serializable {
                 ", dateFinEnchere=" + dateFinEnchere +
                 ", prixInitial=" + prixInitial +
                 ", prixVente=" + prixVente +
+                ", userId=" + userId +
+                ", categorieId=" + categorieId +
                 '}';
     }
-
 }

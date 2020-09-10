@@ -2,7 +2,7 @@ package fr.eni.javaee.applicationenchere.services.users;
 
 import fr.eni.javaee.applicationenchere.model.SecurityUsers;
 
-public interface UsersServices {
+public interface UsersServices{
 
     SecurityUsers saveUser(SecurityUsers user);
 
@@ -15,5 +15,7 @@ public interface UsersServices {
     SecurityUsers findByPseudo(String pseudo);
 
     boolean checkIfIdexists(Integer id);
+
+    SecurityUsers findByMotDePasse(String motDePasse);
 
 }

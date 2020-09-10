@@ -13,6 +13,10 @@ public class CategorieDTO implements Comparable<CategorieDTO> {
         this.libelle = libelle;
     }
 
+    public void setCategorieId(int categorieId) {
+        this.categorieId = categorieId;
+    }
+
     public int getCategorieId() {
         return categorieId;
     }

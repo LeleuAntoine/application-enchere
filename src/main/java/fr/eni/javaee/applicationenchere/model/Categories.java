@@ -33,6 +33,10 @@ public class Categories implements Serializable {
         this.libelle = libelle;
     }
 
+    public void setCategorieId(int categorieId) {
+        this.categorieId = categorieId;
+    }
+
     public int getCategorieId() {
         return categorieId;
     }

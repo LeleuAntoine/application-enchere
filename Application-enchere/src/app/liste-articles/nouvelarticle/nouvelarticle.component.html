@@ -1,0 +1,38 @@
+<form [formGroup]="ArticleForm" (ngSubmit)="submit(this.ArticleForm)">
+  <div>
+    <label>Article : </label>
+    <input type="text" class="form-control" formControlName="article">
+    <label>Description : </label>
+    <textarea class="form-control" formControlName="description"></textarea>
+  </div>
+  <div>
+    <label>Catégorie :</label>
+    <select (click)="ListCategory()" class="form-control" formControlName="Categorie">
+      <option *ngFor="let listCategories of this.list" [value]="listCategories.categorieId">{{listCategories.libelle}}</option>
+    </select>
+    <form>
+      <label>Photo de l'article</label>
+      <button type="submit">Upload</button>
+    </form>
+  </div>
+  <div>
+    <label>Mise à prix :</label>
+    <input type="number" class="form-control" formControlName="miseAPrix">
+    <label>Début de l'enchère : </label>
+    <input type="date" class="form-control" formControlName="debutEnchere">
+    <label>Fin de l'enchère : </label>
+    <input type="date" class="form-control" formControlName="finEnchere">
+  </div>
+  <div>
+    <label>Rue : </label>
+    <input type="text" class="form-control" formControlName="rue">
+    <label>Code postal : </label>
+    <input type="text" class="form-control" formControlName="codePostal">
+    <label>Ville : </label>
+    <input type="text" class="form-control" formControlName="ville">
+  </div>
+  <div>
+    <button class="btn-lg" type="submit">Valider</button>
+    <button class="btn-lg" type="reset">Annuler</button>
+  </div>
+</form>

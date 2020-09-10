@@ -1,21 +1,21 @@
 package fr.eni.javaee.applicationenchere.controller;
 
-
 import fr.eni.javaee.applicationenchere.dto.ArticleDTO;
 import fr.eni.javaee.applicationenchere.model.Articles;
 import fr.eni.javaee.applicationenchere.services.articles.ArticlesServicesImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/encheres")
+@RequestMapping("/enchere")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ArticlesRestController {
 
     @Autowired
@@ -25,10 +25,10 @@ public class ArticlesRestController {
      * Pagination des Articles
      */
     @GetMapping("/pages")
-    public ResponseEntity<List<ArticleDTO>> searchArticles(@RequestParam("beginPage") int beginPage,
-                                                           @RequestParam("endPage") int endPage) {
-        Page<Articles> articles = articlesServices.getPaginatedArticlesList(beginPage, endPage);
-        if (articles != null) {
+    public ResponseEntity<List<ArticleDTO>> getAllArticles() {
+        List<Articles> articles = articlesServices.getAllArticles();
+        if (!CollectionUtils.isEmpty(articles)) {
+            System.out.println("article " + articles);
             List<ArticleDTO> articleDTOs = articles.stream().map(article -> {
                 return mapArticleToArticleDTO(article);
             }).collect(Collectors.toList());
@@ -37,6 +37,20 @@ public class ArticlesRestController {
         return new ResponseEntity<List<ArticleDTO>>(HttpStatus.NO_CONTENT);
     }
 
+
+    /**
+     * Affiche un article
+     * */
+    @GetMapping("/article/{articleID}")
+    public ResponseEntity<ArticleDTO> afficheArticle(@RequestBody ArticleDTO ArticleDTORequest) {
+        Articles  articleRequest = mapArticleDTOToArticle(ArticleDTORequest);
+        Articles articleResponse = articlesServices.afficheArticle(ArticleDTORequest.getArticleID());
+        if (articleResponse != null) {
+            ArticleDTO articleDTO = mapArticleToArticleDTO(articleResponse);
+            return new ResponseEntity<ArticleDTO>(articleDTO, HttpStatus.OK);
+        }
+        return new ResponseEntity<ArticleDTO>(HttpStatus.NO_CONTENT);
+    }
 
     /**
      * Ajoute un nouvel article

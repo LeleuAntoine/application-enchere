@@ -11,4 +11,5 @@ public interface UsersDAO extends JpaRepository<SecurityUsers, Integer> {
 
     SecurityUsers findByPseudo(String pseudo);
 
+    SecurityUsers findByMotDePasse(String motDePasse);
 }

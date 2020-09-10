@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Value;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 /**
  * Classe pour gérer getter et setter de l'objet Users
@@ -20,7 +19,7 @@ import java.io.Serializable;
         uniqueConstraints = {
                 @UniqueConstraint(name = "pseudo_email", columnNames = {"pseudo", "email"})
         })
-public class SecurityUsers implements Serializable {
+public class SecurityUsers{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -76,6 +75,21 @@ public class SecurityUsers implements Serializable {
     public SecurityUsers() {
     }
 
+    public SecurityUsers(int userId, @Size(max = 30, message = "Taille maximum 30 caractères") String pseudo, @Size(max = 30, message = "Taille maximum 30 caractères") String nom, @Size(max = 30, message = "Taille maximum 30 caractères") String prenom, @Email(message = "Email invalide") @Size(max = 20, message = "Taille maximum 20 caractères") String email, @Size(max = 15, message = "Taille maximum 15 caractères") String telephone, @Size(max = 30, message = "Taille maximum 30 caractères") String rue, @Size(max = 10, message = "Taille maximum 10 caractères") String codePostal, @Size(max = 30, message = "Taille maximum 30 caractères") String ville, @Size(max = 30, message = "Taille maximum 30 caractères") String motDePasse, int credit, byte administrateur) {
+        this.userId = userId;
+        this.pseudo = pseudo;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.telephone = telephone;
+        this.rue = rue;
+        this.codePostal = codePostal;
+        this.ville = ville;
+        this.motDePasse = motDePasse;
+        this.credit = credit;
+        this.administrateur = administrateur;
+    }
+
     public SecurityUsers(@Size(max = 30, message = "Taille maximum 30 caractères") String pseudo, @Size(max = 30, message = "Taille maximum 30 caractères") String nom, @Size(max = 30, message = "Taille maximum 30 caractères") String prenom, @Email(message = "Email invalide") @Size(max = 20, message = "Taille maximum 20 caractères") String email, @Size(max = 15, message = "Taille maximum 15 caractères") String telephone, @Size(max = 30, message = "Taille maximum 30 caractères") String rue, @Size(max = 10, message = "Taille maximum 10 caractères") String codePostal, @Size(max = 30, message = "Taille maximum 30 caractères") String ville, @Size(max = 30, message = "Taille maximum 30 caractères") String motDePasse, int credit, byte administrateur) {
         this.pseudo = pseudo;
         this.nom = nom;
@@ -90,19 +104,13 @@ public class SecurityUsers implements Serializable {
         this.administrateur = administrateur;
     }
 
-    public SecurityUsers(int userId, @Size(max = 30, message = "Taille maximum 30 caractères") String pseudo, @Size(max = 30, message = "Taille maximum 30 caractères") String nom, @Size(max = 30, message = "Taille maximum 30 caractères") String prenom, @Email(message = "Email invalide") @Size(max = 20, message = "Taille maximum 20 caractères") String email, @Size(max = 15, message = "Taille maximum 15 caractères") String telephone, @Size(max = 30, message = "Taille maximum 30 caractères") String rue, @Size(max = 10, message = "Taille maximum 10 caractères") String codePostal, @Size(max = 30, message = "Taille maximum 30 caractères") String ville, @Size(max = 30, message = "Taille maximum 30 caractères") String motDePasse, int credit, byte administrateur) {
-        this.userId = userId;
+    public SecurityUsers(@Size(max = 30, message = "Taille maximum 30 caractères") String pseudo, @Size(max = 30, message = "Taille maximum 30 caractères") String motDePasse) {
         this.pseudo = pseudo;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.telephone = telephone;
-        this.rue = rue;
-        this.codePostal = codePostal;
-        this.ville = ville;
         this.motDePasse = motDePasse;
-        this.credit = credit;
-        this.administrateur = administrateur;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getUserId() {

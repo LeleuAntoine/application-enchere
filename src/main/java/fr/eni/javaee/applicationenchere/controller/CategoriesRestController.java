@@ -18,7 +18,8 @@ import java.util.stream.Collectors;
 
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("/enchere/categories")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoriesRestController {
 
     @Autowired

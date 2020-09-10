@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
-
 @Service("usersService")
 @Transactional
 public class UsersServicesImpl implements UsersServices {
@@ -43,5 +42,9 @@ public class UsersServicesImpl implements UsersServices {
     @Override
     public boolean checkIfIdexists(Integer id) {
         return usersDAO.existsById(id);
+    }
+
+    public SecurityUsers findByMotDePasse(String motDePasse) {
+        return usersDAO.findByMotDePasse(motDePasse);
     }
 }

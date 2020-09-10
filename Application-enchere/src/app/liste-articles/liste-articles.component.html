@@ -1,0 +1,9 @@
+<div>
+<label>Article :</label>
+<ul (click)="ListArticle()">
+  <li *ngFor="let ListArticle of this.list">{{ListArticle.nomArticle}}</li>
+  <li *ngFor="let ListArticle of this.list">{{ListArticle.prixVente}}</li>
+  <li *ngFor="let ListArticle of this.list">{{ListArticle.categorieId}}</li>
+  <li *ngFor="let ListArticle of this.list">{{ListArticle.userId}}</li>
+</ul>
+</div>

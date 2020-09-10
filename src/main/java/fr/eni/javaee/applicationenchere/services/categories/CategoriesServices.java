@@ -4,7 +4,7 @@ import fr.eni.javaee.applicationenchere.model.Categories;
 
 import java.util.List;
 
-public interface CategoriesServices {
+public interface CategoriesServices{
 
     Categories saveCategorie(Categories categorie);
 
