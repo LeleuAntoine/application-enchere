@@ -38,19 +38,19 @@ public class ArticlesRestController {
     }
 
 
-    /**
-     * Affiche un article
-     * */
-    @GetMapping("/article/{articleID}")
-    public ResponseEntity<ArticleDTO> afficheArticle(@RequestBody ArticleDTO ArticleDTORequest) {
-        Articles  articleRequest = mapArticleDTOToArticle(ArticleDTORequest);
-        Articles articleResponse = articlesServices.afficheArticle(ArticleDTORequest.getArticleID());
-        if (articleResponse != null) {
-            ArticleDTO articleDTO = mapArticleToArticleDTO(articleResponse);
-            return new ResponseEntity<ArticleDTO>(articleDTO, HttpStatus.OK);
-        }
-        return new ResponseEntity<ArticleDTO>(HttpStatus.NO_CONTENT);
-    }
+//    /**
+//     * Affiche un article
+//     * */
+//    @GetMapping("/article/{articleID}")
+//    public ResponseEntity<ArticleDTO> afficheArticle(@RequestBody ArticleDTO ArticleDTORequest) {
+//        Articles  articleRequest = mapArticleDTOToArticle(ArticleDTORequest);
+//        Articles articleResponse = articlesServices.afficheArticle(ArticleDTORequest.getArticleID());
+//        if (articleResponse != null) {
+//            ArticleDTO articleDTO = mapArticleToArticleDTO(articleResponse);
+//            return new ResponseEntity<ArticleDTO>(articleDTO, HttpStatus.OK);
+//        }
+//        return new ResponseEntity<ArticleDTO>(HttpStatus.NO_CONTENT);
+//    }
 
     /**
      * Ajoute un nouvel article
