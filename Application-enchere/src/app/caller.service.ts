@@ -18,9 +18,9 @@ export class CallerService {
     return this.http.delete<any>('http://localhost:8080/enchere/users/deleteUser/{userId}', json);
   }
 
-  getArticle(){
-    return this.http.get<any>()
-  }
+  // getArticle(){
+  //   return this.http.get<any>()
+  // }
 
   getListCategories() {
     return this.http.get<any>('http://localhost:8080/enchere/categories/listCategories', options);
